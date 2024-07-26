@@ -17,7 +17,7 @@ function Count({setCount}){
   return(
     <div>
       <CountRenderer/>
-      <Buttons setCount={setCount}/>
+      <Buttons />
     </div>
   )
 }
