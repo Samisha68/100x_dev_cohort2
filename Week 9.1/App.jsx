@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 
 
 function UseOnline(){
-  const[isonline,setOnline]=useState(window.navigator.onLine);
+  const[isOnline,setOnline]=useState(window.navigator.onLine);
   useEffect(()=>{
     const handleOnline=()=>setOnline(true);
     const handleOffline=()=>setOnline(false);
@@ -11,20 +11,20 @@ function UseOnline(){
     window.addEventListener('online',handleOnline);
 
     //cleanup
-    return ()=>
-    {
-      window.removeEventListener('online',handleOnline);
+    return()=>{
       window.removeEventListener('offline',handleOffline);
+      window.removeEventListener('online',handleOnline);
     };
+    
   },[]);
-  return isonline();
+  return isOnline;
 }
 
 function App(){
-  const isOnline=UseOnline();
+  const isNetOnline=UseOnline();
   return(
     <>
-      {isOnline?"YAayayay u are online ": "Please connect to the internet"}
+      {isNetOnline?"YAayayay u are online ": "Please connect to the internet"}
     </>
   )
 }
